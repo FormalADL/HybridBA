@@ -10,8 +10,8 @@ module ANNEXSUBCLAUSELIBRARY-SYNTAX
   syntax AnnexLibrary ::=  Mannex  AnnexId AnnexLibraryAssocDef  MSemicolon 
   syntax AnnexLibraryAssocDef ::=  MAsteriskBrace1  AnnexSpecReusableConstructs  MAsteriskBrace2 
                                 |  MAsteriskBrace1  AnnexSpecReusableConstructs  MAsteriskBrace2  InModes
-                                | NoneStatement 
-								| NoneStatement InModes
+                                |  NoneStatement 
+								|  NoneStatement InModes
 								
   syntax AnnexSpecReusableConstructs ::= NODEF
                 
@@ -112,16 +112,16 @@ module ANNEXSUBCLAUSELIBRARY-SYNTAX
                             | LogicalExpression Mcolon LogicalExpression Mcolon LogicalExpression                    
                       
   syntax LogicalExpression ::= LogicalTerm
-                             | LogicalTerm Mor LogicalExpression
+                             | LogicalTerm Mor LogicalExpression  [left, strict(1)]
   
   syntax LogicalTerm ::= LogicalFactor
-                       | LogicalFactor Mand  LogicalTerm
+                       | LogicalFactor Mand  LogicalTerm [left, strict(1)]
    
   syntax LogicalFactor ::= Relation
-                         | Mnot Relation 
+                         | Mnot Relation  [strict]
    
   syntax Relation ::= ArithmeticExpressionSymbol 
-                    | ArithmeticExpressionSymbol RelOp ArithmeticExpressionSymbol
+                    | ArithmeticExpressionSymbol RelOp ArithmeticExpressionSymbol [left, strict]
    
   syntax RelOp ::= MDoubleEqual
                  | MLessThan
@@ -131,7 +131,7 @@ module ANNEXSUBCLAUSELIBRARY-SYNTAX
                  | MNotEqual
    
   syntax ArithmeticExpression ::= Term
-                                | Term AddOp ArithmeticExpression
+                                | Term AddOp ArithmeticExpression [left, strict(1)]
    
   syntax ArithmeticExpressionSymbol ::= ArithmeticExpression
                                       | AddOp ArithmeticExpression 
@@ -142,7 +142,7 @@ module ANNEXSUBCLAUSELIBRARY-SYNTAX
                  | MPointSub
   
   syntax Term ::= Factor
-                | Factor MulOp Term
+                | Factor MulOp Term [left, strict(1)]
    
   syntax MulOp ::= MMul
                  | MDiv
@@ -150,7 +150,7 @@ module ANNEXSUBCLAUSELIBRARY-SYNTAX
                  | MPointDiv
    
   syntax Factor ::= Primary
-                  | Primary MExp Primary
+                  | Primary MExp Primary 
                   | Primary MPointExp Primary 
    
   syntax Primary ::= Assignment
@@ -223,7 +223,8 @@ module ANNEXSUBCLAUSELIBRARY-SYNTAX
                                      | Expression MArrows Id
                                      | Expression MComma BehaviorParameterBindings
                                      | Expression MArrows Id MComma BehaviorParameterBindings
-
+  
+  syntax ActionList ::= EquationList
 //-----------------------------------------------------------------------------------------------------------------------------------
 
   syntax CompositeDecl ::= Mcomposite Mhistory Mstates BehaviorStateList Mtranstitions BehaviorStateTransitionList CompositeDeclList Mend Id MSemicolon
