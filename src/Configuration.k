@@ -29,6 +29,9 @@ module CONFIGURATION
           <call multiplicity="*"> .Map </call> 
          
           <connection multiplicity="*">
+             <connectionDes> .Map <connectionDes>
+             <conComponent> .Map </conComponent>
+             <conPort> .Map </conPort>
           </connection>
          
           <flow multiplicity="*">
