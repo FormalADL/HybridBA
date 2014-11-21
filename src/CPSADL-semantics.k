@@ -58,6 +58,32 @@ module CPSADL-SEMANTICS
             ...
         </system>
         )
+
+   rule <system>
+             ...
+             <component>... <k>  thread Componentid : Id CmpAD : CmpAssocDef end Componentid ; => . ...</k> ...</component>
+             <cpu> 
+			    <threads> TotalThreads |-> (I:Int => I +Int 1) ...</threads> 
+			    ... 
+		     </cpu>
+             ...
+        </system>
+        (. => <system>
+            ...
+            <component>
+               <componentid>
+                   id |-> Componentid
+				   name |-> noname
+                   category |-> thread
+                   ScheduledTimes |-> 0
+               </componentid>
+               <k> CmpAD </k>
+               <comclock> 0 </comclock>
+               ...
+            </component>
+            ...
+        </system>
+        )
    rule <system>
              ...
              <component>... <k>  ComponentType : CmpCategoryType ComponentCategory : CPSNewCmpCategory Componentid : Id end Componentid ; => . ...</k> ...</component>

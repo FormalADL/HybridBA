@@ -8,10 +8,19 @@ module CONFIGURATION
        <systemid> .Map </systemid>
        
        <subcomponent > .List </subcomponent>
-       
        <component multiplicity="*">
           <componentid> .Map </componentid>
           <k> $PGM:K </k>
+          <control>
+              <currentCall>
+                  <function> .k </function>
+                  <xstack> .List </xstack>
+                  <xcontext> . <xcontext>
+                  <lstack> .List </lstack>
+                  <fstack> .List </fstack>
+              </currentCall>
+              <cstack> .List </cstack>
+          </control>
           <prototype multiplicity="*">
           </prototype>
          
@@ -66,6 +75,20 @@ module CONFIGURATION
        
        <property> .Map </property>      // Identifier |-> value
        
+       <cpu> 
+		  <id> 0 </id> 
+		  <state> 0 |-> 0 </state> // running thread: thread name |-> current priority
+		  <threads> 
+			  SyncThreads |-> 0  // for sync [2]
+			  ReadyThreads |-> 0 // for sync [1]
+			  SchedulingThreads |-> 0 // Scheduling Threads.
+			  PeriodicThreads |-> 0
+			  AperiodicThreads |-> 0
+			  SporadicThreads |-> 0
+			  TotalThreads |-> 0
+		  </threads> 
+	   </cpu>
+	          
        <globalclock> 
           <globaltime> 0 </globaltime> 
 		  <subclockcount> 0 |-> 0 kclear |-> 0 </subclockcount> // Total number |-> Current number ; Clear number
