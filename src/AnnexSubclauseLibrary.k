@@ -81,8 +81,8 @@ module ANNEXSUBCLAUSELIBRARY-SYNTAX
   syntax ForIndices ::= ForIndex
                       | ForIndex MComma ForIndices                    
                       
-  syntax ForIndex ::= IDENT
-                    | IDENT Min Expression                    
+  syntax ForIndex ::= Id
+                    | Id Min Expression                    
                       
   syntax WhenEquation ::= Mwhen MBracketLeft Expression MBracketRight MBraceLeft EquationList MBraceRight Mend Mwhen
                         | Mwhen MBracketLeft Expression MBracketRight MBraceLeft EquationList MBraceRight ElseWhenList Mend Mwhen                      
