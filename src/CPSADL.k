@@ -1,6 +1,6 @@
 require "../kAADL/src/AADL.k"
-require "../kAADL/src/AnnexSubclauseLibrary.k"
-require "../kAADL/src/NetComponentAccess.k"
+require "AnnexSubclauseLibrary.k"
+require "NetComponentAccess.k"
 
 module CPSADL-SYNTAX
    
@@ -45,9 +45,6 @@ module CPSADL
 	syntax Mexists ::= "exists"
 	syntax Mcomputation ::= "computation"
 	syntax Mdelay ::= "delay"
-	syntax Mdiscrete ::= "discrete"
-	syntax Mcontinuous ::= "continuous"
-	syntax Mhybrid ::= "hybrid"
 	syntax MPlus ::= "+"
 	syntax MBrace ::= "*"
 	syntax MMinus ::= "-"
@@ -71,21 +68,20 @@ module CPSADL
 	syntax MDArrows ::= "-->"
 	syntax MSigh ::= "!"
 	syntax MQuestion ::= "?"
+	syntax Mhistory ::= "history"
 
   syntax CPSCmpCategory ::= CmpCategory
-                          | CmpCategoryType CPSNewCmpCategory
+                          | InteEntityCmpCategory
+                          | ComEntityCmpCategory
+                          | PhyEntityCmpCategory
                           
-  syntax CPSNewCmpCategory ::= InteEntityCmpCategory
-                             | ComEntityCmpCategory
-                             | PhyEntityCmpCategory
-  
   syntax ComEntityCmpCategory ::= SoftwareCategory
                                 | ExecPlateformCategory	
   
-  syntax InteEntityCmpCategory ::= Msensor | Mactualor | Mnet
+  syntax InteEntityCmpCategory ::= Msensor | Mactuator | Mnet
   syntax PhyEntityCmpCategory ::= Mcontext | Mcontrolled
   
-  syntax CmpCategoryType ::= Mdiscrete | Mcontinuous | Mhybrid
+  
   syntax CmpType ::= CPSCmpCategory Id Mend Id MSemicolon 
 			       | CPSCmpCategory Id CmpAssocDef Mend Id MSemicolon
   
