@@ -45,6 +45,10 @@ module CPSADL
 	syntax Mexists ::= "exists"
 	syntax Mcomputation ::= "computation"
 	syntax Mdelay ::= "delay"
+	syntax Mdiscrete ::= "discrete"
+	syntax Mcontinuous ::= "continuous"
+	syntax Mhybrid ::= "hybrid"
+	syntax Mhistory ::= "history"
 	syntax MPlus ::= "+"
 	syntax MBrace ::= "*"
 	syntax MMinus ::= "-"
@@ -68,20 +72,21 @@ module CPSADL
 	syntax MDArrows ::= "-->"
 	syntax MSigh ::= "!"
 	syntax MQuestion ::= "?"
-	syntax Mhistory ::= "history"
 
   syntax CPSCmpCategory ::= CmpCategory
-                          | InteEntityCmpCategory
-                          | ComEntityCmpCategory
-                          | PhyEntityCmpCategory
+                          | CmpCategoryType CPSNewCmpCategory
                           
+  syntax CPSNewCmpCategory ::= InteEntityCmpCategory
+                             | ComEntityCmpCategory
+                             | PhyEntityCmpCategory
+  
   syntax ComEntityCmpCategory ::= SoftwareCategory
                                 | ExecPlateformCategory	
   
   syntax InteEntityCmpCategory ::= Msensor | Mactuator | Mnet
   syntax PhyEntityCmpCategory ::= Mcontext | Mcontrolled
   
-  
+  syntax CmpCategoryType ::= Mdiscrete | Mcontinuous | Mhybrid
   syntax CmpType ::= CPSCmpCategory Id Mend Id MSemicolon 
 			       | CPSCmpCategory Id CmpAssocDef Mend Id MSemicolon
   
